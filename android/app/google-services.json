@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "95773927624",
+    "project_id": "notes-21d69",
+    "storage_bucket": "notes-21d69.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95773927624:android:5e2501a7384f7cc0081dfd",
+        "android_client_info": {
+          "package_name": "com.example.firebase_crud_basio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95773927624-m5ati0smudlu45bomdatp668gp3ssnir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBb8NbAVU6L1YxuI0r4PMFPkoRXwk2F1Vc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "95773927624-m5ati0smudlu45bomdatp668gp3ssnir.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "95773927624-rgmn2695gvqqove74jgp2e9nc5d7571p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseCrudBasio"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
