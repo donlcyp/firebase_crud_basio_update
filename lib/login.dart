@@ -44,6 +44,14 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               SizedBox(height: 12),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  child: Text("Forgot Password?"),
+                  onPressed: () => _forgotPasswordDialog(),
+                ),
+              ),
+              SizedBox(height: 12),
               ElevatedButton(
                 child: loading
                 ? CircularProgressIndicator(color: Colors.white)
@@ -118,6 +126,68 @@ class _LoginPageState extends State<LoginPage> {
           ],
          ),
         ),
+      ),
+    );
+  }
+
+  void _forgotPasswordDialog() {
+    final resetEmailCtrl = TextEditingController();
+    
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Reset Password'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('Enter your email address to receive a password reset link.'),
+            SizedBox(height: 16),
+            TextField(
+              controller: resetEmailCtrl,
+              decoration: InputDecoration(
+                labelText: 'Email',
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            child: const Text("Cancel"),
+            onPressed: () => Navigator.pop(context),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.teal,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            ),
+            child: const Text("Send Reset Link"),
+            onPressed: () async {
+              if (resetEmailCtrl.text.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Please enter your email')),
+                );
+                return;
+              }
+
+              try {
+                await auth.resetPassword(resetEmailCtrl.text);
+                if(mounted) {
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Password reset link sent to ${resetEmailCtrl.text}')),
+                  );
+                }
+              } catch (e) {
+                if(mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Error: ${e.toString()}')),
+                  );
+                }
+              }
+            },
+          ),
+        ],
       ),
     );
   }
